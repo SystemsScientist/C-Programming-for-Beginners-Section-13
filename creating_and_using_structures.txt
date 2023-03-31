@@ -141,7 +141,7 @@ today.month = 9;
 today.day = 25;
 today.year = 2015;
 
-printf("Today's date is %i/%i/%.2i.\n", today.month, today.day, today.year % 100);
+printf("Today's date is %i/%i/%.2i.\n", today.month, today.day, today.year);
 
 
 Structures in Expressions
