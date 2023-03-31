@@ -1,0 +1,5 @@
+# depslib dependency file v1.0
+1680262688 source:/home/snarkydata/udemy-courses/C-Courses/C-Programming-For-Beginners/Section-13-Structures/Creating-and-Using-Structures/main.c
+	<stdio.h>
+	<stdlib.h>
+
