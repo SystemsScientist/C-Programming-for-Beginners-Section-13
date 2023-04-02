@@ -1,0 +1,154 @@
+
+Section 13: Nested Structures
+-------------------------------------------------------------------
+
+Nested Structures
+
+	- C allows you to define a structure that itself
+	  contains other structures as one or more of its
+	  members
+
+	- you have seen how it is possible to logically 
+	  group the month, day, and year into a structure
+	  called date
+
+		+ how about grouping the hours, minutes,
+		  and seconds into a structure called time
+
+		  struct time {
+
+			int hours;
+			int minutes;
+			int seconds;
+		  };
+
+	- in some applications, you might have the neeed
+	  to group both a date and a time together
+	
+		+ you might need to set up a list of
+		  events that are to occur at a 
+		  particular date and time
+
+
+Nested Structures (continued)
+
+	- you want to have a convenient way to associate
+	  both the date and the time together
+
+		+ define a new structure called, for example,
+		  date_and_time, which contains as its
+		  members two elements
+
+		+ date and time
+
+	          struct date_and_time {
+
+			struct date sdate;
+			struct time stime;
+		  };
+
+	- the first member of this structure is of type
+	  struct date and is called sdate
+
+	- the second member of the date_and_time
+	  structure is of type struct time and is called
+	  stime
+
+	- variables can now be defined to be of type
+	  struct date_and_time
+	
+	  struct date_and_time event;
+
+
+Accessing Members in a Nested Structure
+
+	- to reference the date structure of the variable
+	  event, the syntax is the same as referencing 
+	  any member
+
+	  event.sdate;
+
+	- to reference a particular member inside one
+	  of these structures, a period followed by the
+	  member name is tacked on the end
+
+		+ the below statement sets the month
+		  of the date structure contained within
+		  event to October, and adds one to the
+		  seconds contained within the time
+		  structure
+
+		  event.sdate.month = 10;
+		  ++event.stime.seconds;
+
+Accessing Members in a Nested Structure (continued)
+
+	- the event variable can be initialized just 
+	  like normal
+
+		+ sets the date in the variable event
+		  to February 1, 2015, and sets the 
+		  time to 3:30:00
+
+	  struct date_and_time event = {{2, 1, 2015}, {3, 30, 0}};
+
+	- you can use members' names in the initialization
+
+	  struct date_and_time event = { 
+					{.month = 2, .day = 1, .year = 2015},
+					{.hour = 3, .minutes = 30, .seconds = 0}
+	  };
+
+
+An Array of Nested Structures
+
+	- it is also possible to set up an array
+	  of date_and_time structures
+
+	  struct date_and_time events[100];
+
+	- the array events is declared to contain
+	  100 elements of type struct date_and_time
+
+		+ the fourth date_and_time contained
+		  within the array is referenced in
+		  the usual way as events[3]
+
+	- to set the first time in the array to noon
+
+	  events[0].stime.hour = 12;
+	  events[0].stime.minutes = 0;
+	  events[0].stime.seconds = 0;
+
+
+Declaring a Structure within a Structure
+
+	- you can define the date structure within
+	  the time structure definition
+
+	  struct time {
+
+		struct date {
+
+			int day;
+			int month;
+			int year;
+		} dob;
+
+		int hour;
+		int minutes;
+		int seconds;
+	  };
+
+	- the declaration is enclosed within the
+	  scope of the time structure definition
+
+		+ it does not exist outside it
+		
+		+ it becomes impossible to declare
+		  a date variable external to the
+		  time structure
+
+
+
+
