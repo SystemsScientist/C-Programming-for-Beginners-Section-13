@@ -139,5 +139,112 @@ printf("i1 = %i, *pointers.p1 = %i\n", i1, *pointers.p1);
 printf("i2 = %1, *pointers.p2 = %i\n", i2, *pointers.p2);
 
 
+Character Arrays or Character Pointers???
+
+	struct names {
+
+		char first[20];
+		char last[20];
+	};
+
+	OR
+
+	struct pnames {
+
+		char * first;
+		char * last;
+	};
+
+
+	- you can do both, however, you need to
+	  understand what is happening here
+
+	struct names veep = {"Talia", "Summers"};
+	struct pnames treas = {"Brad", "Fallingjaw"};
+	printf("%s and %s\n", veep.first, treas.first);
+
+	- the struct names variable veep
+
+		+ strings are stored inside the structure
+
+		+ structure has allocated a total of 40 
+		  bytes to hold the two names
+
+	- the struct pnames variable treas
+
+		+ strings are stored wherever the compiler
+		  stores string constants
+
+		+ the structure holds the two addresses,
+		  which takes a total of 16 bytes on our
+		  system
+
+		+ the struct pnames structure allocates
+		  no space to store strings
+
+		+ it can be used only with strings that
+		  have had space allocated for them else-
+		  where 
+
+			- such a string constants or 
+			  strings in arrays
+
+	- the pointers in a pnames structure should be
+	  used only to manage strings that were created
+	  and allocated elsewhere in the program
+
+	- one instance in which it does make sense to use
+	  a pointer in a structure to handle a string is 
+	  if you are dynamically allocating that memory
+
+		+ use a pointer to store the address
+
+		+ has the advantage that you can ask
+		  malloc() to allocate just the amount
+		  of space that is needed for a string
+
+	Example
+
+	struct namect {
+		
+		// using pointers instead of arrays
+		char * fname;
+		char * lname;
+		int letters;
+	};
+
+	- understand that the two strings are not stored
+	  in the structure
+
+		+ stored in the chunk memory managed by 
+		  malloc()
+
+		+ the addresses of the two strings are
+		  stored in the structure
+
+		+ addresses are what string-handling 
+		  functions typically work with
+
+
+Example
+
+void get_info(struct namect * pst) {
+
+	char temp[SLEN];
+	printf("Please enter your fist name: ");
+	s_gets(temp, SLEN);
+
+	// allocate memory to hold name
+	pst -> fname = (char *) malloc(strlen(temp) + 1);
+
+	// copy name to allocated memory
+	strcpy(pst -> fname, temp);
+	printf("Please enter your last name: ");
+	s_gets(temp, SLEN);
+	
+	pst -> lname = (char *) malloc(strlen(temp) + 1);
+	strcpy(pst -> lname, temp);
+}
+	
 
 
