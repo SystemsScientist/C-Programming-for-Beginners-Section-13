@@ -1,0 +1,93 @@
+
+Section 13: Structures and Pointers
+---------------------------------------------------------------------
+
+Structures and Pointers
+
+	- C allows for pointers to structures
+
+	- pointers to structures are easier to manipulate than
+	  structures themselves
+
+	- in some older implementations, a structure cannot be
+	  passed as an argument to a function, but a pointer to
+	  a structure can
+
+	- even if you can pass a structure as an argument, 
+	  passing a pointer is more efficient
+
+	- many data representations use structures containing
+	  pointers to other structures
+
+
+Declaring a struct as a pointer
+
+	- you can define a variable to be a pointer to a struct
+
+	  struct date *date_ptr = NULL;
+
+	- the variable date_ptr can be assigned just like other
+	  pointers
+
+		+ you can set it to point to todays_date with
+		  the assignment statement
+
+	  date_ptr = &todays_date;
+
+	- you can then indirectly access any of the members of
+	  the date structure pointed to by date_ptr
+
+	  (*date_ptr).day = 21;
+
+	- the above has the effect of setting the day of the 
+	  date structure pointed to by date_ptr to 21
+
+		+ parentheses are required because the 
+		  structure member operator "." has higher
+		  precedence than the indirection operator 
+		  "*"
+
+
+Using structs as pointers
+
+	- to test the value of month stored in the date
+	  structure pointed to by date_ptr
+
+	  if ((*date_ptr).month == 12)
+
+	- pointers to structures are so often used in C
+	  that a special operator exists
+
+		+ the structure pointer operator "->",
+		  which is the dash followed by the 
+	 	  greater than sign permits (*x).y to
+		  be more clearly expressed as x -> y
+
+	- the previous statement can be conveniently
+	  written as
+
+	  if (date_ptr -> month == 12)
+
+
+Example
+
+struct date {
+
+	int month;
+	int day;
+	int year;
+};
+
+struct date today *date_ptr;
+
+date_ptr = &today;
+
+date_ptr -> month = 9;
+date_ptr -> day = 25;
+date_ptr -> year = 2015;
+
+printf("Today's date is %i/%i/%.2i.\n", 
+	date_ptr -> month, date_ptr -> day, date_ptr -> year);
+
+
+
