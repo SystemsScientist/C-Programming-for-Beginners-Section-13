@@ -78,7 +78,7 @@ struct date {
 	int year;
 };
 
-struct date today *date_ptr;
+struct date today, *date_ptr;
 
 date_ptr = &today;
 
