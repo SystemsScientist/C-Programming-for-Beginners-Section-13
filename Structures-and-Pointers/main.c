@@ -1,7 +1,7 @@
 /*
     Author: Matt Johnson
     Subject: pointers
-    Purpose:
+    Purpose: program prints date mm/dd/yyyy
     Date: 04/03/2023
 */
 
