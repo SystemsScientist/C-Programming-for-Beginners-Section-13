@@ -1,0 +1,5 @@
+# depslib dependency file v1.0
+1681037685 source:/home/snarkydata/udemy-courses/C-Courses/C-Programming-For-Beginners/Section-13-Structures/Declaring-and-Initializing-a-Structure/main.c
+	<stdio.h>
+	<stdlib.h>
+
