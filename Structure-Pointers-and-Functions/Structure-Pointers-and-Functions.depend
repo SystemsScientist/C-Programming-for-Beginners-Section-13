@@ -1,0 +1,5 @@
+# depslib dependency file v1.0
+1681040435 source:/home/snarkydata/udemy-courses/C-Courses/C-Programming-For-Beginners/Section-13-Structures/Structure-Pointers-and-Functions/main.c
+	<stdio.h>
+	<stdlib.h>
+
